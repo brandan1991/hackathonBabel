@@ -18,12 +18,81 @@ $(document).ready(function() {
     $('.tabla').show();
   });
 
-  $('#finalizar').on('click', function() {
+  $('#finalizar').on('click', function () {
+    event.preventDefault();
+
+    var idServicio = parseInt($(event.target).data('id'));
+
+    var contratacionInstance;
+
+    web3.eth.getAccounts(function (error, accounts) {
+      if (error) {
+        console.log(error);
+      }
+      var account = accounts[0];
+
+      App.contracts.Contratacion.deployed().then(function (instance) {
+        contratacionInstance = instance;
+
+        return contratacionInstance.contratar(idServicio, { from: account, value: 130681824455550001
+        });
+      }).then(function (result) {
+        return App.markAdopted();
+      }).catch(function (err) {
+        console.log(err.message);
+      });
+    });
   });
 
-  $('#rechazar').on('click', function() {
+  $('#rechazar').on('click', function () {
+    event.preventDefault();
+
+    var idServicio = parseInt($(event.target).data('id'));
+
+    var contratacionInstance;
+
+    web3.eth.getAccounts(function (error, accounts) {
+      if (error) {
+        console.log(error);
+      }
+      var account = accounts[0];
+
+      App.contracts.Contratacion.deployed().then(function (instance) {
+        contratacionInstance = instance;
+
+        return contratacionInstance.devolver(idServicio, { from: account, value: 130681824455550001
+        });
+      }).then(function (result) {
+        return App.markAdopted();
+      }).catch(function (err) {
+        console.log(err.message);
+      });
+    });
   });
 
   $('#retraso').on('click', function() {
+    event.preventDefault();
+
+    var idServicio = parseInt($(event.target).data('id'));
+
+    var contratacionInstance;
+
+    web3.eth.getAccounts(function (error, accounts) {
+      if (error) {
+        console.log(error);
+      }
+      var account = accounts[0];
+
+      App.contracts.Contratacion.deployed().then(function (instance) {
+        contratacionInstance = instance;
+
+        return contratacionInstance.contratar(idServicio, { from: account, value: 130681824455550001
+        });
+      }).then(function (result) {
+        return App.markAdopted();
+      }).catch(function (err) {
+        console.log(err.message);
+      });
+    });
   });
 });
