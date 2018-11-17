@@ -1,63 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Pete's Pet Shop</title>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>JustInTime!</title>
 
 
-    
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12 col-sm-8 col-sm-push-2">
-          <h1 class="text-center">Pete's Pet Shop</h1>
-          <hr/>
-          <br/>
-        </div>
-      </div>
+</head>
 
-      <div id="petsRow" class="row">
-        <!-- PETS LOAD HERE -->
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-8 col-sm-push-2">
+        <h1 class="text-center"> <img src="images/iconoAplicacion.png"></img></h1>
+        <hr />
+        <br />
       </div>
     </div>
 
-    <div id="petTemplate" style="display: none;">
-      <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="panel panel-default panel-pet">
-          <div class="panel-heading">
-            <h3 class="panel-title">Scrappy</h3>
-          </div>
-          <div class="panel-body">
-            <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg" data-holder-rendered="true">
-            <br/><br/>
-            <strong>Breed</strong>: <span class="pet-breed">Golden Retriever</span><br/>
-            <strong>Age</strong>: <span class="pet-age">3</span><br/>
-            <strong>Location</strong>: <span class="pet-location">Warren, MI</span><br/><br/>
-            <button class="btn btn-default btn-adopt" type="button" data-id="0">Adopt</button>
-          </div>
+
+  </div>
+
+  <!--<div id="conductorTemplate" style="display: none;">
+    <div class="col-sm-6 col-md-4 col-lg-2">
+      <div class="panel panel-default panel-pet">
+        <div class="panel-heading" style="background-color:rgb(250, 82, 82); color: white ">
+          <h3 class="panel-title">Scrappy</h3>
+        </div>
+        <div class="panel-body">
+          <img alt="140x140" data-src="holder.js/130x130" class="img-rounded img-center" style="width: 100%;" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg"
+            data-holder-rendered="true">
+          <br /><br />
+          <strong>Precio</strong>: <span class="precio">0</span><br />
+          <strong>Tiempo hasta recogida</strong>: <span class="tiempo-recogida">0</span><br />
+          <strong>Tiempo recorrido</strong>: <span class="tiempo-recorrido">0</span><br /><br />
+          <strong>Descuento minuto extra</strong>: <span class="descuento-minuto">0.0</span><br /><br />
+          <button class="btn btn-default btn-adopt" type="button" data-id="0">Contratar</button>
         </div>
       </div>
     </div>
+  </div>-->
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/web3.min.js"></script>
-    <script src="js/truffle-contract.js"></script>
-    <script src="js/app.js"></script>
-  </body>
+  <table class="table table-striped table-bordered">
+    <thead class="thead-light">
+      <tr style="background-color:rgb(250, 82, 82); color: white">
+        <th scope="col"></th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Compañia</th>
+        <th scope="col">Precio (Ether)</th>
+        <th scope="col">Tiempo recogida (min)</th>
+        <th scope="col">Duración recorrido (min)</th>
+        <th scope="col">Penalización (Ether/min) </th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <!--<tbody>
+    </tbody>-->
+    <tbody>
+      <tr>
+        <td><img src="images/carnet1.png" style="max-width: 70px;"></td>
+        <th scope="row">Miguel Angel</th>
+        <td>Uber</td>
+        <td>19.4</td>
+        <td>3</td>
+        <td>22</td>
+        <td>0.3</td>
+        <td><button class="btn btn-default" style="background-color:rgb(250, 82, 82);"><span class="glyphicon glyphicon-ok"></button></span></td>
+      </tr>
+      <tr>
+        <td><img src="images/carnet2.jpg" style="max-width: 70px;"></td>
+        <th scope="row">Jose Angel</th>
+        <td>Cabify</td>
+        <td>23.4</td>
+        <td>5</td>
+        <td>18</td>
+        <td>0.6</td>
+        <td><button class="btn btn-default" style="background-color:rgb(250, 82, 82);"><span class="glyphicon glyphicon-ok"></button></span></td>
+      </tr>
+      <tr>
+        <td><img src="images/carnet3.jpg" style="max-width: 70px;"></td>
+        <th scope="row">Eduardo</th>
+        <td>MyTaxi</td>
+        <td>11.4</td>
+        <td>10</td>
+        <td>23</td>
+        <td>0.45</td>
+        <td><button class="btn btn-default" style="background-color:rgb(250, 82, 82);"><span class="glyphicon glyphicon-ok"></button></span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/web3.min.js"></script>
+  <script src="js/truffle-contract.js"></script>
+  <script src="js/app.js"></script>
+
+
+</body>
+
 </html>
