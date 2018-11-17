@@ -36,6 +36,10 @@ App = {
     return App.bindEvents();
   },
 
+  obtenerValorMoneda: function (importer) {
+    return importe * 10000000000000;
+  },
+
   bindEvents: function () {
     $(document).on('click', '.btn-adopt', App.handleAdopt);
   },
@@ -75,7 +79,7 @@ App = {
       App.contracts.Contratacion.deployed().then(function (instance) {
         contratacionInstance = instance;
 
-        return contratacionInstance.contratar(idServicio, { from: account });
+        return contratacionInstance.contratar(idServicio, { from: account, value: 454545454455550001});
       }).then(function (result) {
         return App.markAdopted();
       }).catch(function (err) {
