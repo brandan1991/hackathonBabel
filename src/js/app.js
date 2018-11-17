@@ -9,12 +9,12 @@ App = {
       var petTemplate = $('#petTemplate');
 
       for (i = 0; i < data.length; i ++) {
-        petTemplate.find('.panel-title').text(data[i].name);
-        petTemplate.find('img').attr('src', data[i].picture);
-        petTemplate.find('.pet-breed').text(data[i].breed);
-        petTemplate.find('.pet-age').text(data[i].age);
-        petTemplate.find('.pet-location').text(data[i].location);
-        petTemplate.find('.btn-adopt').attr('data-id', data[i].id);
+        petTemplate.find('.panel-title').text(data[i].nombre);
+        petTemplate.find('img').attr('src', data[i].imagen);
+        petTemplate.find('.precio').text(data[i].precio);
+        petTemplate.find('.tiempo-recogida').text(data[i].tiempoRecogida);
+        petTemplate.find('.tiempo-recorrido').text(data[i].tiempViaje);
+        petTemplate.find('.descuento-minuto').text(data[i].descuentoMinuto)
 
         petsRow.append(petTemplate.html());
       }
