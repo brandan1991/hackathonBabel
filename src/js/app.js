@@ -38,13 +38,13 @@ App = {
   },
 
   initContract: function() {
-    $.getJSON("Adoption.json", function(data){
+    $.getJSON("Contratacion.json", function(data){
       // Get the necessary contract artifact file and instantiate it with truffle-contract
-      var AdoptionArtifact = data;
-      App.contracts.Adoption = TruffleContract(AdoptionArtifact);
+      var ContratacionArtifact = data;
+      App.contracts.Contratacion = TruffleContract(ContratacionArtifact);
 
       // Set the provider for our contract
-      App.contracts.Adoption.setProvider(App.web3Provider);
+      App.contracts.Contratacion.setProvider(App.web3Provider);
 
       // User our contract to retrieve and mark the adopted pets
       return App.markAdopted();
@@ -58,12 +58,12 @@ App = {
   },
 
   markAdopted: function(adopters, account) {
-    var adoptionInstance;
+    var contratacionInstance;
 
-    App.contracts.Adoption.deployed().then(function(instance) {
-      adoptionInstance = instance;
+    App.contracts.Contratacion.deployed().then(function(instance) {
+      contratacionInstance = instance;
 
-      return adoptionInstance.getAdopters.call();
+      return contratacionInstance.getAdopters.call();
     }).then(function(adopters) {
       for (i = 0; i < adopters.length; i++) {
         if (adopters[i] !== '0x0000000000000000000000000000000000000000') {
@@ -78,9 +78,9 @@ App = {
   handleAdopt: function(event) {
     event.preventDefault();
 
-    var petId = parseInt($(event.target).data('id'));
+    var idServicio = parseInt($(event.target).data('id'));
 
-    var adoptionInstance;
+    var contratacionInstance;
 
     web3.eth.getAccounts(function(error, accounts) {
       if (error) {
@@ -89,11 +89,10 @@ App = {
 
       var account = accounts[0];
 
-      App.contracts.Adoption.deployed().then(function(instance) {
-        adoptionInstance = instance;
+      App.contracts.Contratacion.deployed().then(function(instance) {
+        contratacionInstance = instance;
 
-        // Execute adopt as a transaction by sending account
-        return adoptionInstance.adopt(petId, {from: account});
+        return contratacionInstance.contratar(idServicio, {from: account});
       }).then(function(result) {
         return App.markAdopted();
       }).catch(function(err) {
@@ -101,7 +100,6 @@ App = {
       });
     });
   }
-
 };
 
 $(function() {
