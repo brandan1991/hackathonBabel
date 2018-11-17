@@ -13,4 +13,17 @@ $(document).ready(function() {
   map.addControl(new MapboxDirections({
     accessToken: mapboxgl.accessToken
   }), 'top-left');
+
+  $('#calcularPrecios').on('click', function() {
+    $('.tabla').show();
+  });
+
+  $('#finalizar').on('click', function() {
+  });
+
+  $('#rechazar').on('click', function() {
+  });
+
+  $('#retraso').on('click', function() {
+  });
 });

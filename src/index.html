@@ -52,6 +52,9 @@
       left: 150px;
       width: 80%;
     }
+    .tabla, .btnFin {
+      display: none;
+    }
   </style>
 </head>
 
@@ -88,64 +91,73 @@
 
   <div id='map'></div>
 
-  <table class="table table-striped table-bordered" style="position: absolute; top: 800px; width: 80%;  left: 150px;">
-    <thead class="thead-light">
-      <tr style="background-color:rgb(250, 82, 82); color: white">
-        <th scope="col"></th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Compañia</th>
-        <th scope="col">Precio (Ether)</th>
-        <th scope="col">Tiempo recogida (min)</th>
-        <th scope="col">Duración recorrido (min)</th>
-        <th scope="col">Penalización (Ether/min) </th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <!--<tbody>
-    </tbody>-->
-    <tbody>
-      <tr>
-        <td><img src="images/mal.jpg" style="max-width: 70px;"></td>
-        <th scope="row">Miguel Angel</th>
-        <td>Uber</td>
-        <td>19.4</td>
-        <td>3</td>
-        <td>22</td>
-        <td>0.3</td>
-        <td><button class="btn btn-default btn-adopt" style="background-color:rgb(250, 82, 82);"><span class="glyphicon glyphicon-ok"></button></span></td>
-      </tr>
-      <tr>
-        <td><img src="images/jose.jpg" style="max-width: 70px;"></td>
-        <th scope="row">Francisco Jose</th>
-        <td>Cabify</td>
-        <td>23.4</td>
-        <td>5</td>
-        <td>18</td>
-        <td>0.6</td>
-        <td><button class="btn btn-default btn-adopt" style="background-color:rgb(250, 82, 82);"><span class="glyphicon glyphicon-ok"></button></span></td>
-      </tr>
-      <tr>
-        <td><img src="images/juan.jpg" style="max-width: 70px;"></td>
-        <th scope="row">Juan</th>
-        <td>MyTaxi</td>
-        <td>11.4</td>
-        <td>10</td>
-        <td>23</td>
-        <td>0.45</td>
-        <td><button class="btn btn-default btn-adopt" style="background-color:rgb(250, 82, 82);"><span class="glyphicon glyphicon-ok"></button></span></td>
-      </tr>
-      <tr>
-        <td><img src="images/brandan.jpg" style="max-width: 70px;"></td>
-        <th scope="row">Brandan</th>
-        <td>Uber</td>
-        <td>18.4</td>
-        <td>2</td>
-        <td>21</td>
-        <td>0.2</td>
-        <td><button class="btn btn-default" style="background-color:rgb(250, 82, 82);"><span class="glyphicon glyphicon-ok"></button></span></td>
-      </tr>
-    </tbody>
-  </table>
+  <div id="precios" style="position: absolute; top: 700px; width: 80%; left: 150px; align-content: center">
+    <button id="calcularPrecios" type="button" class="btn btn-primary" style="margin-bottom: 70px">Mostrar precios</button>
+
+    <table class="table table-striped table-bordered tabla" style="display: none">
+      <caption style="text-align: center; font-weight: bold; font-size: 2em">SERVICIOS DISPONBILES</caption>
+      <thead class="thead-light">
+        <tr style="background-color:rgb(250, 82, 82); color: white">
+          <th scope="col"></th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Compañia</th>
+          <th scope="col">Precio (Ether)</th>
+          <th scope="col">Tiempo recogida (min)</th>
+          <th scope="col">Duración recorrido (min)</th>
+          <th scope="col">Penalización (Ether/min) </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <!--<tbody>
+      </tbody>-->
+      <tbody>
+        <tr class="desaparece">
+          <td><img src="images/mal.jpg" style="max-width: 70px;"></td>
+          <th scope="row">Miguel Angel</th>
+          <td>Uber</td>
+          <td>19.4</td>
+          <td>3</td>
+          <td>22</td>
+          <td>0.3</td>
+          <td><button class="btn btn-default btn-adopt" style="background-color:rgb(250, 82, 82);"><span class="glyphicon glyphicon-ok"></button></span></td>
+        </tr>
+        <tr>
+          <td><img src="images/jose.jpg" style="max-width: 70px;"></td>
+          <th scope="row">Francisco Jose</th>
+          <td>Cabify</td>
+          <td>23.4</td>
+          <td>5</td>
+          <td>18</td>
+          <td>0.6</td>
+          <td><button id="eligeConductor" class="btn btn-default btn-adopt" style="background-color:rgb(250, 82, 82);"><span class="glyphicon glyphicon-ok"></button></span></td>
+        </tr>
+        <tr class="desaparece">
+          <td><img src="images/juan.jpg" style="max-width: 70px;"></td>
+          <th scope="row">Juan</th>
+          <td>MyTaxi</td>
+          <td>11.4</td>
+          <td>10</td>
+          <td>23</td>
+          <td>0.45</td>
+          <td><button class="btn btn-default btn-adopt" style="background-color:rgb(250, 82, 82);"><span class="glyphicon glyphicon-ok"></button></span></td>
+        </tr>
+        <tr class="desaparece">
+          <td><img src="images/brandan.jpg" style="max-width: 70px;"></td>
+          <th scope="row">Brandan</th>
+          <td>Uber</td>
+          <td>18.4</td>
+          <td>2</td>
+          <td>21</td>
+          <td>0.2</td>
+          <td><button class="btn btn-default" style="background-color:rgb(250, 82, 82);"><span class="glyphicon glyphicon-ok"></button></span></td>
+        </tr>
+      </tbody>
+    </table>
+    <button id="finalizar" type="button" class="btn btn-primary btnFin" style="margin-bottom: 70px">Finalizar</button>
+    <button id="rechazar" type="button" class="btn btn-danger btnFin" style="margin-bottom: 70px">Rechazar</button>
+    <button id="retrasar" type="button" class="btn btn-warning btnFin" style="margin-bottom: 70px">Retraso</button>
+  </div>
+  
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

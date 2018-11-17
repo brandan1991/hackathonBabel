@@ -73,13 +73,15 @@ App = {
       if (error) {
         console.log(error);
       }
-
+      $('.desaparece').hide();
+      $('.btnFin').show();
+      $('#calcularPrecios').hide();
       var account = accounts[0];
 
       App.contracts.Contratacion.deployed().then(function (instance) {
         contratacionInstance = instance;
 
-        return contratacionInstance.contratar(idServicio, { from: account, value: 454545454455550001
+        return contratacionInstance.contratar(idServicio, { from: account, value: 130681824455550001
         });
       }).then(function (result) {
         return App.markAdopted();
