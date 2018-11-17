@@ -2,28 +2,11 @@ App = {
   web3Provider: null,
   contracts: {},
 
-  init: async function() {
-    // Load pets.
-    $.getJSON('../pets.json', function(data) {
-      var petsRow = $('#petsRow');
-      var petTemplate = $('#petTemplate');
-
-      for (i = 0; i < data.length; i ++) {
-        petTemplate.find('.panel-title').text(data[i].nombre);
-        petTemplate.find('img').attr('src', data[i].imagen);
-        petTemplate.find('.precio').text(data[i].precio);
-        petTemplate.find('.tiempo-recogida').text(data[i].tiempoRecogida);
-        petTemplate.find('.tiempo-recorrido').text(data[i].tiempViaje);
-        petTemplate.find('.descuento-minuto').text(data[i].descuentoMinuto)
-
-        petsRow.append(petTemplate.html());
-      }
-    });
-
+  init: async function () {
     return await App.initWeb3();
   },
 
-  initWeb3: async function() {
+  initWeb3: async function () {
     // Is there an injected web3 instance?
     if (typeof web3 !== 'undefined') {
       App.web3Provider = web3.currentProvider;
@@ -37,8 +20,8 @@ App = {
     return App.initContract();
   },
 
-  initContract: function() {
-    $.getJSON("Contratacion.json", function(data){
+  initContract: function () {
+    $.getJSON("Contratacion.json", function (data) {
       // Get the necessary contract artifact file and instantiate it with truffle-contract
       var ContratacionArtifact = data;
       App.contracts.Contratacion = TruffleContract(ContratacionArtifact);
@@ -53,57 +36,57 @@ App = {
     return App.bindEvents();
   },
 
-  bindEvents: function() {
+  bindEvents: function () {
     $(document).on('click', '.btn-adopt', App.handleAdopt);
   },
 
-  markAdopted: function(adopters, account) {
+  markAdopted: function (adopters, account) {
     var contratacionInstance;
 
-    App.contracts.Contratacion.deployed().then(function(instance) {
+    App.contracts.Contratacion.deployed().then(function (instance) {
       contratacionInstance = instance;
 
       return contratacionInstance.getAdopters.call();
-    }).then(function(adopters) {
+    }).then(function (adopters) {
       for (i = 0; i < adopters.length; i++) {
         if (adopters[i] !== '0x0000000000000000000000000000000000000000') {
           $('.panel-pet').eq(i).find('button').text('Success').attr('disabled', true);
         }
       }
-    }).catch(function(err) {
+    }).catch(function (err) {
       console.log(err.message);
     });
   },
 
-  handleAdopt: function(event) {
+  handleAdopt: function (event) {
     event.preventDefault();
 
     var idServicio = parseInt($(event.target).data('id'));
 
     var contratacionInstance;
 
-    web3.eth.getAccounts(function(error, accounts) {
+    web3.eth.getAccounts(function (error, accounts) {
       if (error) {
         console.log(error);
       }
 
       var account = accounts[0];
 
-      App.contracts.Contratacion.deployed().then(function(instance) {
+      App.contracts.Contratacion.deployed().then(function (instance) {
         contratacionInstance = instance;
 
-        return contratacionInstance.contratar(idServicio, {from: account});
-      }).then(function(result) {
+        return contratacionInstance.contratar(idServicio, { from: account });
+      }).then(function (result) {
         return App.markAdopted();
-      }).catch(function(err) {
+      }).catch(function (err) {
         console.log(err.message);
       });
     });
   }
 };
 
-$(function() {
-  $(window).load(function() {
+$(function () {
+  $(window).load(function () {
     App.init();
   });
 });
