@@ -1,6 +1,7 @@
 {
   "contractName": "Adoption",
   "abi": [
+    
     {
       "constant": true,
       "inputs": [
