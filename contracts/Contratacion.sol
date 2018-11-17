@@ -6,13 +6,16 @@ contract Contratacion {
 
 
     struct CLiente {
-        uint idCliente;
+        address addressCliente;
         uint idServicio;
+        uint importe;
     }
+
+    CLiente[] public clientes;
 
     
     function contratar(uint idServicio) public payable  returns (uint) {
-        servicio[idServicio] = msg.sender;
+        clientes.push(CLiente(msg.sender, idServicio, msg.value));
         return idServicio;
     }
 }
