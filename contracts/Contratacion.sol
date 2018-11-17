@@ -11,7 +11,7 @@ contract Contratacion {
     }
 
     
-    function contratar(uint idServicio) public  returns (uint) {
+    function contratar(uint idServicio) public payable  returns (uint) {
         servicio[idServicio] = msg.sender;
         return idServicio;
     }
